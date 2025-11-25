@@ -9,9 +9,8 @@ const nextConfig: NextConfig = {
         pathname: "/PokeAPI/sprites/master/sprites/pokemon/**",
       },
     ],
-    unoptimized: true, // Desabilita otimização de imagens no build estático
+    unoptimized: true, // Desabilita otimização de imagens para melhor performance
   },
-  output: "export", // Para deploy estático no Firebase
 };
 
 export default nextConfig;

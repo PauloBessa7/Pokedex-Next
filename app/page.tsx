@@ -33,9 +33,15 @@ async function getPokemons(
   return [pokemonsData, pagination];
 }
 
-export default async function HomePage() {
-  // Para build estático, sempre carrega a primeira página
-  const [pokemons, pagination] = await getPokemons(0, 50);
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ offset?: string; limit?: string }>;
+}) {
+  const params = await searchParams;
+  const offsetNum = parseInt(params.offset || "0");
+  const limitNum = parseInt(params.limit || "50");
+  const [pokemons, pagination] = await getPokemons(offsetNum, limitNum);
 
   return (
     <main className="flex min-h-screen flex-col items-center  p-24">

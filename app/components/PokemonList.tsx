@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 import CardPokemon from "./Pokemon/CardPokemon";
 import CardPokemonSkeleton from "./Pokemon/CardPokemonSkeleton";
 import Pagination from "./Pagination/Pagination";
@@ -14,64 +14,26 @@ export default function PokemonList({
   initialPokemons: Pokemon[];
   initialPagination: TypePagination;
 }) {
-  const searchParams = useSearchParams();
-  const [pokemons, setPokemons] = useState<Pokemon[]>(initialPokemons);
-  const [pagination, setPagination] = useState<TypePagination>(initialPagination);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const offset = parseInt(searchParams.get("offset") || "0");
-    const limit = parseInt(searchParams.get("limit") || "50");
-
-    if (offset === 0) {
-      setPokemons(initialPokemons);
-      setPagination(initialPagination);
-      return;
-    }
-
-    setIsLoading(true);
-    
-    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
-      .then(res => res.json())
-      .then(data => {
-        const pokemonsData: Pokemon[] = data.results.map((pokemon: any, index: number) => {
-          const id = offset + index + 1;
-          return {
-            id,
-            name: pokemon.name,
-            sprites: {
-              front_default: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
-            },
-          };
-        });
-
-        setPokemons(pokemonsData);
-        setPagination({
-          count: data.count,
-          next: data.next,
-          previous: data.previous,
-        });
-        setIsLoading(false);
-      })
-      .catch(() => setIsLoading(false));
-  }, [searchParams, initialPokemons, initialPagination]);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   const handleNavigation = (url: string) => {
-    window.history.pushState({}, "", url);
-    window.dispatchEvent(new PopStateEvent("popstate"));
+    startTransition(() => {
+      router.push(url);
+    });
   };
 
   return (
     <>
       <ul className="col columns-5 gap-4 mt-8 space-y-4">
-        {isLoading ? (
+        {isPending ? (
           Array.from({ length: 50 }).map((_, i) => (
             <li key={i}>
               <CardPokemonSkeleton />
             </li>
           ))
         ) : (
-          pokemons.map((pokemon) => (
+          initialPokemons.map((pokemon) => (
             <li key={pokemon.name}>
               <CardPokemon
                 name={pokemon.name}
@@ -82,10 +44,10 @@ export default function PokemonList({
         )}
       </ul>
       <Pagination
-        count={pagination.count}
-        next={pagination.next}
-        previous={pagination.previous}
-        isLoading={isLoading}
+        count={initialPagination.count}
+        next={initialPagination.next}
+        previous={initialPagination.previous}
+        isLoading={isPending}
         onNavigate={handleNavigation}
       />
     </>
