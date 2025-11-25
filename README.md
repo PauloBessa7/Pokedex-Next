@@ -1,28 +1,8 @@
-# 🎮 Pokédex Next.js
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Uma Pokédex moderna e responsiva construída com **Next.js 15**, **TypeScript** e **Tailwind CSS**, consumindo a [PokéAPI](https://pokeapi.co/).
+## Getting Started
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
-
-## ✨ Funcionalidades
-
-- 📱 **Design Responsivo** - UI moderna com gradientes e animações suaves
-- ⚡ **Performance Otimizada** - Carregamento ultra-rápido com cache inteligente
-- 🎯 **Paginação Inteligente** - Navegue entre milhares de Pokémons com facilidade
-- 🔄 **Loading States** - Estados de carregamento elegantes com skeletons
-- 🌓 **Tema Escuro/Claro** - Suporte automático para modo escuro
-- 🎨 **Animações Modernas** - Efeitos hover e transições suaves
-- 🏗️ **Arquitetura Next.js 15** - Server Components + Client Components
-- 📦 **TypeScript** - Totalmente tipado para melhor DX
-
-## 🚀 Começando
-
-### Pré-requisitos
-
-- Node.js 18.x ou superior
-- npm, yarn, pnpm ou bun
-
-### Instalação
+First, run the development server:
 
 ```bash
 # Clone o repositório
@@ -38,84 +18,23 @@ npm install
 npm run dev
 ```
 
-Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🏗️ Estrutura do Projeto
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```
-app/
-├── components/
-│   ├── Pagination/
-│   │   └── Pagination.tsx      # Componente de paginação
-│   ├── Pokemon/
-│   │   ├── CardPokemon.tsx     # Card individual do Pokémon
-│   │   └── CardPokemonSkeleton.tsx  # Loading skeleton
-│   └── PokemonList.tsx         # Lista de Pokémons (Client Component)
-├── Pokemon/
-│   └── [name]/
-│       └── page.tsx            # Página de detalhes do Pokémon
-├── types/
-│   └── pokemons.ts             # Definições de tipos TypeScript
-├── layout.tsx                  # Layout raiz
-├── loading.tsx                 # Estado de loading global
-└── page.tsx                    # Página principal (Server Component)
-```
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## 🛠️ Tecnologias
+## Learn More
 
-- **[Next.js 15](https://nextjs.org/)** - Framework React com App Router
-- **[TypeScript](https://www.typescriptlang.org/)** - Superset tipado do JavaScript
-- **[Tailwind CSS](https://tailwindcss.com/)** - Framework CSS utility-first
-- **[PokéAPI](https://pokeapi.co/)** - API RESTful de Pokémon
-- **[React 19](https://react.dev/)** - Biblioteca UI com Server Components
+To learn more about Next.js, take a look at the following resources:
 
-## 📝 Recursos Técnicos
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### Server Components
-- Busca de dados otimizada no servidor
-- SEO melhorado
-- Menor bundle JavaScript
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### Client Components
-- Interatividade com `useTransition`
-- Estados de loading gerenciados
-- Navegação suave
+## Deploy on Vercel
 
-### Performance
-- Cache inteligente com `force-cache`
-- Sprites otimizadas do CDN oficial
-- 1 requisição ao invés de 50+ por página
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-## 🎨 UI/UX
-
-- Cards com gradientes coloridos
-- Efeitos de hover com escala e brilho
-- Loading skeletons para melhor UX
-- Paginação intuitiva com ícones
-- Suporte completo a dark mode
-
-## 📦 Scripts Disponíveis
-
-```bash
-npm run dev      # Inicia servidor de desenvolvimento
-npm run build    # Cria build de produção
-npm run start    # Inicia servidor de produção
-npm run lint     # Executa o linter
-```
-
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 👨‍💻 Autor
-
-**Paulo Bessa**
-- GitHub: [@PauloBessa7](https://github.com/PauloBessa7)
-
----
-
-Desenvolvido com ❤️ usando Next.js e PokéAPI
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
