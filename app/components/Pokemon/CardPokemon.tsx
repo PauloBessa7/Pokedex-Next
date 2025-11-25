@@ -16,6 +16,8 @@ export default function CardPokemon(pokemon: { name: string; image: string }) {
             width={130}
             height={130}
             className="drop-shadow-lg"
+            unoptimized
+            loading="lazy"
           />
         </div>
 
